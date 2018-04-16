@@ -32,55 +32,55 @@ int main()
     //######################################################
     // initialisation des caractéristiques de la simulation
     //######################################################
-    //nombre de génération par réplicat
+    //nombre de génération par réplicat //maximal number of generation
     int generation_max=100;
-    //nombre de réplicat par jeu de paramètre
+    //nombre de réplicat par jeu de paramètre //number of monte-carlo by parameters set
     int nbrreplicat=2;
-    // gestion du sexe heterogametique
+    // gestion du sexe heterogametique //who is the heterogametic sex ?
     // sexe 1 = mâle , 0: femelles
     int sexe_heterogametique = 1;
     // ligne qui attribue le sexe_homogametique à l'inverse
     int sexe_homogametique; if (sexe_heterogametique == 1 ) { sexe_homogametique = 0; } else if (sexe_heterogametique==0) { sexe_homogametique = 1;}
     int x=1;int y=0; // rendre plus clair les choses avec du x/y plutôt que des chiffres
 
-    // TYPE DE SIMUL
+    // TYPE DE SIMUL // intensity of the fecundity variation 
     // commenter la solution évitée
     char typesimule[10];
     //sprintf(typesimule,"insecte"); int ts=1;
     sprintf(typesimule,"vertebre"); int ts=2;
     //sprintf(typesimule,"fixe"); int ts=3;
-    int sireprofixe=10;
+    int sireprofixe=10; //fecundity if fixed
 
-    // NUMERO DE LA SIMUL
+    // NUMERO DE LA SIMUL //simulation number, to change to avoid overwrite
     int numero = 115;
 	
-	// cout specifique aux femelles
-    // si <0, même cout que les males
+    // cout specifique aux femelles //dispersal cost of female
+    // si <0, même cout que les males // same as male if <0
     double mu_f = -1;
 	
-	// valeur d'initialisation spécifique aux homozigotes
+    // valeur d'initialisation spécifique aux homozigotes // allele value for Y
     // si =0, identique à la valeur générales
     double pc_init_e = -0.25;									double pc_e = pc_init_e;
 	
-	// valeur d'initialisation spécifique aux heterozigotes
+     // valeur d'initialisation spécifique aux heterozigotes // allele value for X
     // si =0, identique à la valeur générales
     double pc_init_o = -0.01;									double pc_o = pc_init_o;
 
-	// stochasticité environementale
+	// stochasticité environementale //environmental stochasticity
     unsigned int compteur_sigma=0; double gamme_sigma[] = {1};
 
-    // gestion mélange de la population (casse de la structure génétique)
-    // 0, aucun melange, 1 melange des deux, 2 melange male, 3 femelles
+    // gestion mélange de la population (casse de la structure génétique) // shuffle
+    // 0, aucun melange, 1 melange des deux, 2 melange male, 3 femelles // 0, no shuffle, 1 shuffle, 2, male shuffle, 3, female shuffle
     unsigned int compteur_melange=0; double gamme_melange[] = {0};
 
-    // -2 harem -1 monogamie, 0 monoandrie, 1 polyandrie
+    // -2 harem -1 monogamie, 0 monoandrie, 1 polyandrie // mating system
     // probabilité de transition d'un père à un autre pour la stratégie polyandre
     unsigned int compteur_changepere=0; double gamme_changepere[] = {-1};
 
-    // distance de dispertion, si chargé négativement, on a une dispersion à % fixe
+    // distance de dispertion, si chargé négativement, on a une dispersion à % fixe // dispersal distance, if <0, fixed
     unsigned int compteur_dist_disp=0; int gamme_dist_disp[] = {-200};
 
-    // K
+    // K //carying capacity
     unsigned int compteur_K ; int gamme_K[] = {100};
 
     // nbr_patch
@@ -89,28 +89,28 @@ int main()
     //sex-ratio
     unsigned int compteur_sexratio ; double gamme_sexratio[] = {0.50};
 
-    // lambda
+    // lambda //growth rate
     unsigned int compteur_lambda ; double gamme_lambda[] = {2};
 
-    // beta
+    // beta //competition parameter
     unsigned int compteur_beta ; double gamme_beta[] = {1};
 
-    // mu (mortalité à la dispersion)
+    // mu (mortalité à la dispersion) //dispersal mortality/cost
     unsigned int compteur_mu ; double gamme_mu[] = {0.1};
 
-    // in (intensite de l'inbreeding depression, diminution de la fecondite)
+    // in (intensite de l'inbreeding depression, diminution de la fecondite) /inbreeding intensity
     unsigned int compteur_in ; double gamme_in[] = {0};
 
-    // pcinit //si negatif, fixe et pas variant au départ
+    // pcinit //si negatif, fixe et pas variant au départ //dispersal initial allele value, everibody have the same if <0, else, randomly drawn around the mean
     unsigned int compteur_pc_init ; double gamme_pc_init[] = {-0.5};
 
-    // taux mut s
+    // taux mut s //mutation rate on dispersal alleles
     unsigned int compteur_taux_muta_s ; double gamme_taux_muta_s[] = {0};
 
-    // force mut s
+    // force mut s //mutatiion strenght on dispersal alleles
     unsigned int compteur_force_muta_s ; double gamme_force_muta_s[] = {0.05};
 	
-    // taux mut n, si chargé négativement, les neutres sont annulés
+    // taux mut n, si chargé négativement, les neutres sont annulés //neutral mutation rate
     unsigned int compteur_taux_muta_n ; double gamme_taux_muta_n[] = {0.001};
 
     //######################################################
